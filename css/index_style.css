@@ -1,3 +1,14 @@
+.programms__text-main_text {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.programms__box-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 @media(max-width:1120px){
     .programms_box{
         display: flex;

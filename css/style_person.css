@@ -1,7 +1,9 @@
+/* Стили, специфичные для личного кабинета, админки и т.д. */
+
 .programms__inner {
-    min-height: 50vh;
+  min-height: 50vh;
 }
 
-.footer{
-    height: 100px;
+.footer {
+  height: 100px;
 }

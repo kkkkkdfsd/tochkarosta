@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+// 1. Проверка авторизации — защищает доступ к админке
+if (!isset($_SESSION['user']) || empty($_SESSION['user']['id'])) {
+    header('Location: /');
+    exit();
+}
+
+// 2. Подключение к БД — нужно только авторизованным пользователям
 require_once '../php/database.php';
 ?>
 

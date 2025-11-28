@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 session_start();
 ?>
 
@@ -106,4 +106,119 @@ session_start();
     </div>
 </body>
 
+</html>
+                                -->
+<?php
+session_start();
+
+// Защита сессионных cookies (работает при HTTPS)
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+    session_set_cookie_params([
+        'httponly' => true,
+        'secure' => true,
+        'samesite' => 'Strict'
+    ]);
+} else {
+    session_set_cookie_params([
+        'httponly' => true,
+        'samesite' => 'Lax'
+    ]);
+}
+
+$isAuth = isset($_SESSION['user']) && is_array($_SESSION['user']) && !empty($_SESSION['user']['id']);
+?>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="«Точка Роста» — федеральная сеть центров образования цифрового, естественнонаучного и технического профилей для школьников в малых городах и сёлах.">
+    
+    <!-- Preconnect для шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- Иконка и стили -->
+    <link rel="shortcut icon" href="img/logo.webp" type="image/webp">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- style_person.css и index_style.css подключать НЕ нужно — всё в style.css -->
+    
+    <title>Точка Роста</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="block-header" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+        <div class="container"> <!-- Было: container-fluid -->
+            <a class="navbar-brand" href="index.php">
+                <img src="img/logo.webp" alt="Логотип Точка Роста" width="50" height="50">
+            </a>
+            <div class="flex-grow-1 mx-3" style="border-bottom: 3px solid rgba(214, 55, 49, 1);"></div> <!-- Линия -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <?php if ($isAuth): ?>
+                        <a class="nav-link" href="admin/admin.php" aria-label="Личный кабинет">
+                            <img src="img/authorization.webp" alt="Иконка профиля" width="35" height="35">
+                        </a>
+                    <?php else: ?>
+                        <a class="nav-link" href="admin/index.php" aria-label="Войти">
+                            <img src="img/authorization.webp" alt="Иконка входа" width="35" height="35">
+                        </a>
+                    <?php endif; ?>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+        <main class="main">
+            <section>
+                <div class="container">
+                    <div class="programms__python" id="programms__js">
+                        <h1 class="programms__text-main_text">Точка Роста</h1>
+                        <p class="programms__span">
+                            «Точка Роста» — это федеральная сеть центров образования цифрового, естественнонаучного, технического и гуманитарного профилей, организованная в рамках проекта «Современная школа». Создается на базе сельских школ и общеобразовательных учреждений малых городов численностью до 60 тыс. человек. Центры не имеют статус юридического лица, а являются структурными подразделениями образовательных организаций. Призваны обеспечить высокий уровень образования, дать равные возможности для обучения всех детей независимо от места их проживания.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="programms" id="programms">
+                <div class="container">
+                    <div class="programms__inner">
+                        <h2 class="programms__title">Наши направления</h2>
+                        <div class="programms__items">
+                            <div class="programms__box">
+                                <a href="direction/index_it.php" class="programms__box-link">
+                                    <img class="programms-img" src="img/it.webp" alt="Направление: ИВТ и программирование" loading="lazy">
+                                    <p class="programm__text">ИВТ и программирование</p>
+                                </a>
+                            </div>
+                            <div class="programms__box">
+                                <a href="direction/index_himbio.php" class="programms__box-link">
+                                    <img class="programms-img" src="img/himbio.webp" alt="Направление: Химия и Биология" loading="lazy">
+                                    <p class="programm__text">Химия и Биология</p>
+                                </a>
+                            </div>
+                            <div class="programms__box">
+                                <a href="direction/index_phis.php" class="programms__box-link">
+                                    <img class="programms-img" src="img/phis.webp" alt="Направление: Физика" loading="lazy">
+                                    <p class="programm__text">Физика</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Bootstrap JS (обязательно для корректной работы layout) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
 </html>
