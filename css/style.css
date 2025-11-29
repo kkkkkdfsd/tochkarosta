@@ -7,22 +7,16 @@
   border: 0;
 }
 
-html {
-  height: 100%;
-}
-
-body {
+html, body {
   font-family: 'Roboto', sans-serif;
   line-height: 1.2;
   scroll-behavior: smooth;
-  background-image: url(../img/bg.webp) !important;
+  background-image: url(../img/bg.webp);
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  margin: 0;
-  padding: 0;
-  overflow-y: hidden; /* ❗ Отключаем прокрутку */
+  /* ❌ overflow-y: hidden; — УБРАНО, чтобы прокрутка работала на всех страницах */
 }
 
 a {
@@ -44,15 +38,24 @@ li {
 .wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Занимает минимум высоту окна */
-  min-width: 100vw;  /* Занимает ширину окна */
+  min-height: 100vh;
 }
 
 .container {
   max-width: 1210px;
   padding: 0 15px;
   margin: 0 auto;
-  overflow: hidden;
+  /* === overflow: hidden; === */
+}
+
+/* === Отключаем скролл на главной странице === */
+.home-page{
+    overflow: hidden;
+}
+
+
+body:not(.home-page){
+overflow-y: auto;
 }
 
 /* === Шапка и навигация === */
@@ -80,23 +83,7 @@ li {
   text-align: center;
 }
 
-/* === Текст "Точка Роста" на главной === */
-.programms__text-main_text {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
-  font-size: 48px;
-  font-weight: 700;
-  color: #333e48;
-}
-
-.programms__span {
-  font-size: 18px;
-  line-height: 30px;
-  text-align: center;
-}
-
-/* === СЕТКА НАПРАВЛЕНИЙ — ключевое обновление === */
+/* === СЕТКА НАПРАВЛЕНИЙ — унифицирована для всех страниц === */
 .programms__items {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -116,6 +103,11 @@ li {
   background: rgba(255, 255, 255, 0.9);
   width: 100%;
   max-width: 340px;
+  transition: transform 0.2s ease;
+}
+
+.programms__box:hover {
+  transform: translateY(-5px);
 }
 
 .programms__box-link {
@@ -135,6 +127,58 @@ li {
   color: #333e48;
   font-size: 18px;
   font-weight: bold;
+}
+
+/* === Текст "Точка Роста" на главной === */
+.programms__text-main_text {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  font-size: 48px;
+  font-weight: 700;
+  color: #333e48;
+}
+
+.programms__span {
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+}
+
+/* === Секция "О курсе" (для страниц курсов) === */
+.about {
+  padding-top: 70px;
+  line-height: 30px;
+  color: #333e48;
+}
+
+.about__inner {
+  padding: 20px 0;  /* ❌ min-height: 80vh убрано */
+}
+
+/* === Сетка для текста и картинки === */
+.about__content {
+  max-width: 880px;
+  margin: 0 auto;
+  /* display: flex; ❌ УБРАНО — используем Bootstrap сетку */
+}
+
+.about__title {
+  font-size: 36px;
+  font-weight: 700;
+  padding-bottom: 15px;
+}
+
+.about__text {
+  max-width: 400px;
+  padding-bottom: 30px;
+  font-size: 18px;
+}
+
+.about-img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
 }
 
 /* === Формы и кнопки === */
@@ -166,10 +210,30 @@ li {
   padding: 10px 0;
 }
 
-.auth-title {
-  padding-top: 100px;
-  color: #333e48;
-  text-align: center;
+.form__title {
+  font-size: 36px;
+  padding-bottom: 50px;
+}
+
+.form__subtitle {
+  padding-bottom: 50px;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.form__content {
+  background-color: #d63731;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.content__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* === Футер === */
@@ -178,6 +242,10 @@ li {
   align-items: center;
   justify-content: center;
   height: 200px;
+}
+
+.footer-link {
+  color: #333e48;
 }
 
 /* === Адаптив для планшетов и мобильных === */
@@ -198,4 +266,15 @@ li {
     width: 90%;
     max-width: 300px;
   }
+
+  .about__title {
+    font-size: 28px;
+  }
+
+  .about__text {
+    font-size: 16px;
+  }
 }
+
+/* === Убраны дубли и избыточные стили === */
+/* Удалены: programms__box-first, programms__box-second, programms__box-third */

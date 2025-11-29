@@ -8,125 +8,133 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Кружок по программированию для школьников. Изучение Pascal, Python, C++, JavaScript и других языков.">
+    
+    <!-- Preconnect для шрифтов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+          crossorigin="anonymous">
+    
     <link rel="shortcut icon" href="../img/logo.webp" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <title>Точка Роста - IT</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div class="wrapper">
         <div class="block-header" data-bs-theme="dark">
-            <div class="block-header__container" style="display: flex; justify-content: center;">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="../index.php">
-                            <img src="../img/logo.webp" alt="tochka rosta" style="height: 50px; width: 50px;">
-                        </a>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item">
-                                    <a class="nav-link link-custom" aria-current="page" href="#about">Про кружок</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link-custom"" href=" #programms" role="button" aria-expanded="false">
-                                        Программы обучения
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link-custom"" href=" #form" role="button" aria-expanded="false">
-                                        Записаться на курс
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link-custom"" href=" #contacts" role="button" aria-expanded="false">
-                                        Контакты
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                <?php
-                                    if (isset($_SESSION['user'])) {
-                                        echo '<a class="nav-link link-custom"" href=" ../admin/admin.php" role="button" aria-expanded="false">
-                                        <img src="../img/authorization.webp" alt="" style="width: 35px; height:35px;">
-                                    </a>';
-                                    } else {
-                                        echo '<a class="nav-link link-custom"" href=" ../admin/index.php" role="button" aria-expanded="false">
-                                        <img src="../img/authorization.webp" alt="" style="width: 35px; height:35px;">
-                                    </a>';
-                                    }
-                                    ?>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+                <div class="container">
+                    <a class="navbar-brand" href="../index.php">
+                        <img src="../img/logo.webp" alt="Логотип Точка Роста" width="50" height="50">
+                    </a>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link link-custom" aria-current="page" href="#about">Про кружок</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-custom" href="#programms">Программы обучения</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-custom" href="#form">Записаться на курс</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-custom" href="#contacts">Контакты</a>
+                        </li>
+                        <li class="nav-item">
+                            <?php if (isset($_SESSION['user']) && !empty($_SESSION['user']['id'])): ?>
+                                <a class="nav-link" href="../admin/admin.php" aria-label="Личный кабинет">
+                                    <img src="../img/authorization.webp" alt="Иконка профиля" width="35" height="35">
+                                </a>
+                            <?php else: ?>
+                                <a class="nav-link" href="../admin/index.php" aria-label="Войти">
+                                    <img src="../img/authorization.webp" alt="Иконка входа" width="35" height="35">
+                                </a>
+                            <?php endif; ?>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
 
         <main class="main">
             <section class="about" id="about">
-                <div class="container">
-                    <div class="about__inner">
-                        <div class="about__content">
-                            <div class="about__left">
-                                <h1 class="about__title"><img src="../img/tochka.webp" alt="" style="width:300px;height: 95px;"></h1>
-                                <p class="about__text">Изучение основ программирования, алгоритмов и структур данных. Включает в себя использование компьютерных классов и робототехнических наборов для разработки и программирования.Учащиеся используют компьютерные классы для разработки и программирования. Они работают с различными языками программирования, такими как Python, Java, C++ и другие. Они учатся создавать программы, обрабатывать данные, работать с графическим интерфейсом и разрабатывать веб-приложения.</p>
-                                <div class="col-12">
-                                    <a href="#form">
-                                        <button type="submit" class="btn btn-custom">Записаться</button>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="about__right">
-                                <img class="about-img" src="../img/about-img.webp" alt="" srcset="">
-                            </div>
+    <div class="container">
+        <div class="about__inner">
+            <div class="about__content">
+                <div class="row align-items-center">
+                    <!-- Картинка слева -->
+                    <div class="col-lg-6 col-md-12 d-none d-md-block">
+                        <img class="about-img img-fluid" src="../img/about-img.webp" alt="Фото занятий" style="max-width: 100%; height: auto;">
+                    </div>
+                    <!-- Текст справа -->
+                    <div class="col-lg-6 col-md-12">
+                        <h1 class="about__title">
+                            <img src="../img/tochka.webp" alt="Логотип Точка Роста" style="width:300px;height: 95px;">
+                        </h1>
+                        <p class="about__text">
+                            Изучение основ программирования, алгоритмов и структур данных. 
+                            Включает в себя использование компьютерных классов и робототехнических наборов для разработки и программирования. 
+                            Учащиеся используют компьютерные классы для разработки и программирования. 
+                            Они работают с различными языками программирования, такими как Python, Java, C++ и другие. 
+                            Они учатся создавать программы, обрабатывать данные, работать с графическим интерфейсом и разрабатывать веб-приложения.
+                        </p>
+                        <div class="col-12">
+                            <a href="#form">
+                                <button type="button" class="btn btn-custom">Записаться</button>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </div>
+</section>
+
             <section class="programms" id="programms">
                 <div class="container">
                     <div class="programms__inner">
                         <h2 class="programms__title">Наши программы</h2>
                         <div class="programms__content">
-                            <div class="programms__box">
-                                <div class="programms__box-first">
+                            <div class="programms__items">
+                                <div class="programms__box">
                                     <a href="#programms__pascal">
-                                        <img class="programms-img" src="../img/pascal.webp" alt="" srcset="">
+                                        <img class="programms-img" src="../img/pascal.webp" alt="Курс по Pascal" loading="lazy">
                                         <p class="programm__text"><b>Pascal</b></p>
                                     </a>
                                 </div>
-                                <div class="programms__box-second">
+                                <div class="programms__box">
                                     <a href="#programms__python">
-                                        <img class="programms-img" src="../img/python.webp" alt="">
+                                        <img class="programms-img" src="../img/python.webp" alt="Курс по Python" loading="lazy">
                                         <p class="programm__text"><b>Python</b></p>
                                     </a>
                                 </div>
-                                <div class="programms__box-third">
+                                <div class="programms__box">
                                     <a href="#programms__kumir">
-                                        <img class="programms-img" src="../img/kumir.webp" alt="" style="margin-bottom: 75px; margin-top: 80px;">
+                                        <img class="programms-img" src="../img/kumir.webp" alt="Курс по Kumir" loading="lazy">
                                         <p class="programm__text"><b>Kumir</b></p>
                                     </a>
                                 </div>
-                                <div class="programms__box-third">
+                                <div class="programms__box">
                                     <a href="#programms__c">
-                                        <img class="programms-img" src="../img/c++.webp" alt="">
+                                        <img class="programms-img" src="../img/c++.webp" alt="Курс по C++" loading="lazy">
                                         <p class="programm__text"><b>C++</b></p>
                                     </a>
                                 </div>
-                                <div class="programms__box-third">
+                                <div class="programms__box">
                                     <a href="#programms__info">
-                                        <img class="programms-img" src="../img/pg.webp" alt="">
+                                        <img class="programms-img" src="../img/pg.webp" alt="Углубленное изучение информатики" loading="lazy">
                                         <p class="programm__text"><b>Углубленное изучение информатики</b></p>
                                     </a>
                                 </div>
-                                <div class="programms__box-third">
+                                <div class="programms__box">
                                     <a href="#programms__js">
-                                        <img class="programms-img" src="../img/js.webp" alt="" style="margin-bottom: 40px; margin-top: 20px;">
+                                        <img class="programms-img" src="../img/js.webp" alt="Курс по JavaScript" loading="lazy">
                                         <p class="programm__text"><b>JavaScript</b></p>
                                     </a>
                                 </div>
@@ -134,7 +142,7 @@ session_start();
                         </div>
                         <div class="programms__arrow">
                             <a href="#programms__pascal" class="arrow__link">
-                                <img src="../img/arrow.webp" width="40" srcset="">
+                                <img src="../img/arrow.webp" width="40" alt="Вниз">
                             </a>
                         </div>
                         <div class="programms__pascal" id="programms__pascal">
@@ -171,6 +179,7 @@ session_start();
                     </div>
                 </div>
             </section>
+
             <section class="form" id="form">
                 <div class="container">
                     <div class="form__inner">
@@ -184,17 +193,20 @@ session_start();
                                 <label class="input-label" for="class">Введите ваш класс</label>
                                 <input type="text" class="form__input" name="class" maxlength="3" required>
                                 <label class="input-label" for="phone">Введите номер телефона</label>
-                                <input type="number" class="form__input" name="phone" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==11) return false;" placeholder="8 888 888 88 88" required>
+                                <input type="tel" class="form__input" name="phone" pattern="[0-9]{11}" placeholder="88888888888" required>
                                 <button type="submit" class="form-btn btn btn-custom2" style="margin-top: 20px;">Отправить</button>
-                                <?php
-                                echo '<p class="input-label"> ' . $_SESSION['msg'] . ' </p> ';
-                                unset($_SESSION['msg']);
-                                ?>
+                                <?php if (!empty($_SESSION['msg'])): ?>
+                                    <p class="input-label text-danger">
+                                        <?= htmlspecialchars($_SESSION['msg'], ENT_QUOTES, 'UTF-8') ?>
+                                    </p>
+                                    <?php unset($_SESSION['msg']); ?>
+                                <?php endif; ?>
                             </form>
                         </div>
                     </div>
                 </div>
             </section>
+
             <section class="contacts" id="contacts">
                 <div class="container">
                     <div class="contacts__inner">
@@ -209,15 +221,11 @@ session_start();
                                 <li class="contacts__li">Улица: <span>ул.Ленина, 230</span></li>
                                 <div class="js-clock">
                                     <h3>Время:</h3>
-                                    <span>
-                                        <h4>
-                                            00:00
-                                        </h4>
-                                    </span>
+                                    <span><h4>00:00</h4></span>
                                 </div>
-
                             </ul>
-                            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Acc0e6162b0230b1556aad063595a14676d410b67632126348d2195a664b1fa8b&amp;source=constructor" width="600" height="450" frameborder="0"></iframe>
+                            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Acc0e6162b0230b1556aad063595a14676d410b67632126348d2195a664b1fa8b&amp;source=constructor" 
+                                    width="600" height="450" frameborder="0"></iframe>
                         </div>
                     </div>
                 </div>
@@ -227,22 +235,25 @@ session_start();
         <footer class="footer">
             <div class="container">
                 <div class="footer__inner">
-                    <nav class="nav">
-                        <a href="#about" class="nav__link footer-link">Про кружок</a>
-                        <a href="#programms" class="nav__link footer-link">Наши программы</a>
-                        <a href="#form" class="nav__link footer-link">Записаться на кружок</a>
-                        <a href="#contacts" class="nav__link footer-link">Контакты</a>
-                        <a href="../admin/index.php">
-                            <img src="../img/logo.webp" alt="tochka rosta" style="height: 50px; width: 50px;">
+                    <nav class="nav d-flex flex-wrap justify-content-center">
+                        <a href="#about" class="nav__link footer-link mx-2">Про кружок</a>
+                        <a href="#programms" class="nav__link footer-link mx-2">Наши программы</a>
+                        <a href="#form" class="nav__link footer-link mx-2">Записаться на кружок</a>
+                        <a href="#contacts" class="nav__link footer-link mx-2">Контакты</a>
+                        <a href="../admin/index.php" class="mx-2">
+                            <img src="../img/logo.webp" alt="Логотип Точка Роста" width="50" height="50">
                         </a>
-
                     </nav>
                 </div>
             </div>
         </footer>
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+            crossorigin="anonymous"></script>
     <script src="../js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="../js/clock.js"></script>
 </body>
 

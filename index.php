@@ -150,7 +150,7 @@ $isAuth = isset($_SESSION['user']) && is_array($_SESSION['user']) && !empty($_SE
     
     <title>Точка Роста</title>
 </head>
-<body>
+<body class="home-page">
     <div class="wrapper">
         <header class="block-header" data-bs-theme="dark">
     <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
